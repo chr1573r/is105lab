@@ -1,1 +1,9 @@
-Test
+# Definisjoner for lab2
+
+## Operatør prioritet
+
+
+## "one's complement"
+
+
+## "two's complement"
