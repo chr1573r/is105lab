@@ -1,7 +1,11 @@
 # Definisjoner for lab2
 
 ## Operatør prioritet
-
+I python (og andre programmeringsspråk) har vi såkalte operatører.
+Disse brukes til f.eks matematiske operasjoner (addere, subtrahere osv.) og sammenligninger (hvis, større enn, er lik..)
+For at handlinger som bruker operatører skal gi riktige svar,
+er vi avhengige av at operatørene har forskjellig prioritet.
+Hvis ikke ville regnestykker som inneholder både + - * / gitt feil svar hvis ikke mulitiplikasjonen og divisjonen ble utført først.
 
 ## "one's complement"
 
