@@ -7,7 +7,15 @@ For at handlinger som bruker operatører skal gi riktige svar,
 er vi avhengige av at operatørene har forskjellig prioritet.
 Hvis ikke ville regnestykker som inneholder både + - * / gitt feil svar hvis ikke mulitiplikasjonen og divisjonen ble utført først.
 
-## "one's complement"
 
+## Hva menes med "one's complement"?
 
-## "two's complement"
+"one's complement" er def på en oppgave som blir gjort ved å endre bits som er 0 til 1, 
+og omvendt (1 til 0) i den binære representasjonen av et tall. 
+
+## Hva menes med "two's complement"?
+
+"two's complement" er en matematisk operasjon på binære tall. Denne operasjonen involverer også "one's complement" som ble nevnt over.
+Dette gjøres ved å bruke "one's complement" til å gjøre 0 om til 1 og 1 om til 0 i den binære representasjonen av tallet. 
+Deretter  legger vi bare til 1. Dette kan man bruke hvis jeg foreksempel har den binære representasjonen av 10, og vil finne ut hva -10 er.
+"two's complement" er operasjonen alle datamaskiner bruker til å representere heltall.  
