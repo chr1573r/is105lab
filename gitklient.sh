@@ -5,7 +5,7 @@
 # 
 # Forutsetter at current directory er et repository og at det er riktig satt opp.
 
-APPVERSION="0.1"
+APPVERSION="0.2"
 
 # Terminal farger
 DEF="\x1b[0m"
@@ -31,6 +31,12 @@ YELLOW="\x1b[33;11m"
 trap "{ skrivut \"Fanget stopp signal, avslutter...\"; sleep 1;  exit; }" SIGINT SIGTERM # Set trap for catching Ctrl-C and kills, so we can reset terminal upon exit
 trap "{ clear; reset; skrivut \"gitklient $APPVERSION terminated at `date`\"; }" EXIT # exit procedure
 
+header()
+{
+	clear
+	skrivut ""$DEF"### "$CYAN"gitklient $APPVERSION "$DEF"- Mappe: "$CYAN"$(pwd)"$DEF" - Bruker: "$CYAN"$(whoami)"$DEF" ###"
+	skrivut
+}
 skrivut()
 {
 	echo -e ""$DEF"$1"$DEF""
@@ -45,7 +51,7 @@ skrivutdata()
 			;;
 
 		stopp)
-			echo -e ""$DEF""$PURPLE"###"$DEF""
+			echo -e ""$DEF""$PURPLE"### OK!"$DEF""
 			;;
 
 	esac
@@ -59,24 +65,26 @@ bekreft()
 
 leggtilogcommit()
 {
-	skrivut "'Utfører git add *'"
+	header
+	skrivutdata start "git add *"
 	git add *
-
-	skrivut "Skriv inn kommentar til commiten du oppretter:"
+	skrivutdata stopp "git add *"
+	skrivut
+	echo -e "Skriv inn kommentar til commiten du oppretter:"$YELLOW""
 	read KOMMENTAR
 
-	skrivut "Vil bli commitet med kommentaren: $KOMMENTAR"
+	skrivut "Vil bli commitet med kommentaren: \""$YELLOW"$KOMMENTAR\""
 	bekreft
 	skrivut "Utfører git commit!"
-	skrivutdata start "git commit"
+	skrivutdata start "git commit -m \"$KOMMENTAR\""
 	git commit -m "$KOMMENTAR"
-	skrivutdata stopp "git commit"
+	skrivutdata stopp "git commit -m \"$KOMMENTAR\""
 	bekreft
 }
 
 synkronisermedgithub()
 {
-	clear
+	header
 	skrivut "Laster ned..."
 	skrivutdata start "git pull origin master"
 	git pull origin master
@@ -93,9 +101,7 @@ synkronisermedgithub()
 
 meny()
 {
-clear
-skrivut ""$DEF"### "$CYAN"gitklient $APPVERSION "$DEF"- Mappe: "$CYAN"$(pwd)"$DEF" - Bruker: "$CYAN"$(whoami)"$DEF" ###"
-skrivut    
+header   
 skrivut "  1. Commit alle endringer"
 skrivut "     (git add * og git commit)"
 skrivut    
