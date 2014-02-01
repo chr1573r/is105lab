@@ -1,4 +1,4 @@
-# -*- coding: latin-1 -*-
+# -*- coding: utf-8 -*-
 
 #
 #  IS-105 LAB2
@@ -26,7 +26,7 @@ def ascii_fugl():
 	print """
 	       \/_
 	  \,   /( ,/
-	   \\\' ///
+	   \\\\' ///
 	    \_ /_/
 	    (./
 	     '` 
@@ -156,5 +156,5 @@ print "\n\n# Oppgave 8"
 print "\nascii2Hex('A') resultat:"
 print ascii2Hex('A')
 
-print "\ntransferHex('Hei og hopp') resultat:"
-transferHex('Hei og hopp')
+print "\ntransferHex('Hei og hopp øæå') resultat:"
+transferHex('Hei og hopp øæå')

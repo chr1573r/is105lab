@@ -6,13 +6,14 @@
 # Forutsetter at current directory er et repository og at det er riktig satt opp.
 
 
-trap "{ echo "Fanget stopp signal, avslutter..."; sleep 1;  exit; }" SIGINT SIGTERM # Set trap for catching Ctrl-C and kills, so we can reset terminal upon exit
-trap "{ reset; echo \"gitklient terminated at `date`\"; }" EXIT # exit procedure
+trap "{ echo \"Fanget stopp signal, avslutter...\"; sleep 1;  exit; }" SIGINT SIGTERM # Set trap for catching Ctrl-C and kills, so we can reset terminal upon exit
+trap "{ clear; echo \"gitklient terminated at `date`\"; }" EXIT # exit procedure
 
 
 bekreft()
 {
-	read -n 1 "Trykk en tast for å fortsette..." SELECTION
+	echo "Trykk en tast for å fortsette..."
+	read -n 1 SELECTION
 }
 
 leggtilogcommit()
@@ -20,8 +21,8 @@ leggtilogcommit()
 	echo "'Utfører git add *'"
 	git add *
 
-	
-	read "Skriv inn kommentar til commiten du oppretter:" KOMMENTAR
+	echo "Skriv inn kommentar til commiten du oppretter:"
+	read KOMMENTAR
 
 	echo "Vil bli commitet med kommentaren: $KOMMENTAR"
 	bekreft
@@ -44,6 +45,7 @@ synkronisermedgithub()
 meny()
 {
 clear
+echo "$SELECTION"
 echo "Velg handling:"
 echo    
 echo "1. Commit alle endringer"
@@ -54,8 +56,11 @@ echo "   (git pull origin master og"
 echo "       git push origin master)"
 echo   
 echo "X. Avslutt"
+echo
+echo
+echo "Velg en handling (1, 2 eller X):"
 
-read -n 1 "Velg en handling (1, 2 eller X):" SELECTION
+read -n 1 SELECTION
 
 case "$SELECTION" in
  	1)
@@ -77,9 +82,10 @@ case "$SELECTION" in
 	*)
 		;;
 esac
+}
 
 # selve runscriptet
 while true
         do
-                meny
+        	meny
         done
