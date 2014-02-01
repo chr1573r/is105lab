@@ -5,62 +5,109 @@
 # 
 # Forutsetter at current directory er et repository og at det er riktig satt opp.
 
+APPVERSION="0.1"
 
-trap "{ echo \"Fanget stopp signal, avslutter...\"; sleep 1;  exit; }" SIGINT SIGTERM # Set trap for catching Ctrl-C and kills, so we can reset terminal upon exit
-trap "{ clear; echo \"gitklient terminated at `date`\"; }" EXIT # exit procedure
+# Terminal farger
+DEF="\x1b[0m"
+WHITE="\e[0;37m"
+LIGHTBLACK="\x1b[30;01m"
+BLACK="\x1b[30;11m"
+LIGHTBLUE="\x1b[34;01m"
+BLUE="\x1b[34;11m"
+LIGHTCYAN="\x1b[36;01m"
+CYAN="\x1b[36;11m"
+LIGHTGRAY="\x1b[37;01m"
+GRAY="\x1b[37;11m"
+LIGHTGREEN="\x1b[32;01m"
+GREEN="\x1b[32;11m"
+LIGHTPURPLE="\x1b[35;01m"
+PURPLE="\x1b[35;11m"
+LIGHTRED="\x1b[31;01m"
+RED="\x1b[31;11m"
+LIGHTYELLOW="\x1b[33;01m"
+YELLOW="\x1b[33;11m"
 
+
+trap "{ skrivut \"Fanget stopp signal, avslutter...\"; sleep 1;  exit; }" SIGINT SIGTERM # Set trap for catching Ctrl-C and kills, so we can reset terminal upon exit
+trap "{ clear; reset; skrivut \"gitklient $APPVERSION terminated at `date`\"; }" EXIT # exit procedure
+
+skrivut()
+{
+	echo -e ""$DEF"$1"$DEF""
+}
+
+skrivutdata()
+{
+	case "$1" in
+
+		start)
+			echo -e ""$DEF""$PURPLE"### Utfører: "$PURPLE"\""$YELLOW"$2"$PURPLE"\""$YELLOW""
+			;;
+
+		stopp)
+			echo -e ""$DEF""$PURPLE"###"$DEF""
+			;;
+
+	esac
+}
 
 bekreft()
 {
-	echo "Trykk en tast for å fortsette..."
-	read -n 1 SELECTION
+	skrivut "Trykk en tast for å fortsette..."
+	read -s -n 1 SELECTION
 }
 
 leggtilogcommit()
 {
-	echo "'Utfører git add *'"
+	skrivut "'Utfører git add *'"
 	git add *
 
-	echo "Skriv inn kommentar til commiten du oppretter:"
+	skrivut "Skriv inn kommentar til commiten du oppretter:"
 	read KOMMENTAR
 
-	echo "Vil bli commitet med kommentaren: $KOMMENTAR"
+	skrivut "Vil bli commitet med kommentaren: $KOMMENTAR"
 	bekreft
-	echo "Utfører git commit!"
+	skrivut "Utfører git commit!"
+	skrivutdata start "git commit"
 	git commit -m "$KOMMENTAR"
+	skrivutdata stopp "git commit"
 }
 
 synkronisermedgithub()
 {
-	echo "Laster ned..."
-	echo "(git pull origin master)"
-	sleep 1
+	clear
+	skrivut "Laster ned..."
+	skrivutdata start "git pull origin master"
 	git pull origin master
-	echo "Laster opp..."
-	echo "(git push origin master)"
-	sleep 1
+	skrivutdata stopp "git pull origin master"
+	skrivut
+	skrivut "Laster opp..."
+	skrivutdata start "git push origin master"
 	git push origin master
+	skrivutdata stopp "git push origin master"
+	skrivut
+	skrivut "Ferdig!"
+	bekreft
 }
 
 meny()
 {
 clear
-echo "$SELECTION"
-echo "Velg handling:"
-echo    
-echo "1. Commit alle endringer"
-echo "   (git add * og git commit)"
-echo    
-echo "2. Synkroniser med github.com"
-echo "   (git pull origin master og"
-echo "       git push origin master)"
-echo   
-echo "X. Avslutt"
-echo
-echo
-echo "Velg en handling (1, 2 eller X):"
+skrivut ""$DEF"### "$CYAN"gitklient $APPVERSION "$DEF"- Mappe: "$CYAN"$(pwd)"$DEF" - Bruker: "$CYAN"$(whoami)"$DEF" ###"
+skrivut    
+skrivut "  1. Commit alle endringer"
+skrivut "     (git add * og git commit)"
+skrivut    
+skrivut "  2. Synkroniser med github.com"
+skrivut "     (git pull origin master og"
+skrivut "      git push origin master)"
+skrivut   
+skrivut "  X. Avslutt"
+skrivut
+skrivut
+skrivut "Velg en handling (1, 2 eller X):"
 
-read -n 1 SELECTION
+read -s -n 1 SELECTION
 
 case "$SELECTION" in
  	1)
