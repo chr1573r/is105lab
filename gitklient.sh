@@ -71,6 +71,7 @@ leggtilogcommit()
 	skrivutdata start "git commit"
 	git commit -m "$KOMMENTAR"
 	skrivutdata stopp "git commit"
+	bekreft
 }
 
 synkronisermedgithub()
