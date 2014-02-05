@@ -5,7 +5,7 @@
 # 
 # Forutsetter at current directory er et repository og at det er riktig satt opp.
 
-APPVERSION="0.2"
+APPVERSION="0.3"
 
 # Terminal farger
 DEF="\x1b[0m"
@@ -66,9 +66,9 @@ bekreft()
 leggtilogcommit()
 {
 	header
-	skrivutdata start "git add *"
+	skrivutdata start "git add * --all"
 	git add *
-	skrivutdata stopp "git add *"
+	skrivutdata stopp "git add * --all"
 	skrivut
 	echo -e "Skriv inn kommentar til commiten du oppretter:"$YELLOW""
 	read KOMMENTAR
@@ -103,7 +103,7 @@ meny()
 {
 header   
 skrivut "  1. Commit alle endringer"
-skrivut "     (git add * og git commit)"
+skrivut "     (git add * --all)"
 skrivut    
 skrivut "  2. Synkroniser med github.com"
 skrivut "     (git pull origin master og"

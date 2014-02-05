@@ -35,8 +35,12 @@ gruppe = {  'student1': '-', \
 #      3 c
 #
 # Din funksjonsimplementering skrives her ...
-
-
+print "bash:"
+subprocess.call(["scripts/test1.sh"])
+print "perl:"
+subprocess.call(["scripts/test1.pl"])
+print "python:"
+subprocess.call(["scripts/test1.py"])
 
 #
 #  Oppgave 2
@@ -46,6 +50,17 @@ gruppe = {  'student1': '-', \
 #    Kopier resultatet som kjøring av denne funksjonen gir og 
 #    lim inn her som kommentar.
 #
+#		----- mysysinfo() -----
+#		
+#			Her er mitt resultat av kjøringen av denne funksjonen:
+#		   
+#			
+#		byteorder: little
+#		os data: 
+#		('Linux', 'tuxenboxen', '2.6.32-431.3.1.el6.x86_64', '#1 SMP Fri Jan 3 21:39:27 UTC 2014', 'x86_64')
+#		os bruker: christer
+
+
 def min_sys_info():
 	"""
 	Her er mitt resultat av kjøringen av denne funksjonen:
@@ -73,7 +88,13 @@ def min_sys_info():
 #    Anta at inn-data er korrekt (ingen testing nødvendig)
 #
 def initialer(navn):
-	return 2
+	navn=navn.split()
+	fornavn=navn[0]
+	etternavn=navn[1]
+
+	resultat=fornavn[0] + "." + etternavn[0] + "."
+	return resultat
+
 
 #
 #  Oppgave 4
