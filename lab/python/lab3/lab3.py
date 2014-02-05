@@ -114,9 +114,20 @@ def initialer(navn):
 #
 #    Anta at inn-data er korrekt, dvs. inneholder to 
 #    operander (to tall) og en operatør (+, for eksempel).
-#
+#	
+#	expr2+3
+#	regexp1=r"[0-9]+"
+#	regexp2=r"[0-9]"
+# re.findall(regexp1, expr)
 def infix_to_prefix(infix):
-	return 2
+	operander = re.findall(r"[0-9]+", infix) # Hente ut operander
+	operator = re.findall(r"[+*\-\/]", infix) # Finne operator (+*-/)
+	resultat = operator[0] + " " + operander[0] + " " + operander[1]
+	#print "Debug:" + infix
+	#print "Debug:" + operander[0]
+	#print "Debug:" + operator[0]
+	#print "Debug:" + resultat[0]
+	return resultat
 
 
 # Kaller opp implementerte funksjoner (pseudo-testing)
