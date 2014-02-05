@@ -13,9 +13,9 @@ import subprocess
 import re
 
 # Skriv inn fullt navn på gruppemedlemene (erstatte '-' med navn slikt 'Kari Trå')
-gruppe = {  'student1': '-', \
-			'student2': '-', \
-            'student3': '-', \
+gruppe = {  'student1': 'Christer Jonassen', \
+			'student2': 'Christoffer Lien', \
+            'student3': 'Pål Sandnes', \
 }
 
 #
@@ -35,12 +35,13 @@ gruppe = {  'student1': '-', \
 #      3 c
 #
 # Din funksjonsimplementering skrives her ...
-print "bash:"
-subprocess.call(["scripts/test1.sh"])
-print "perl:"
-subprocess.call(["scripts/test1.pl"])
-print "python:"
-subprocess.call(["scripts/test1.py"])
+def lab3_scripts():
+	print "bash:"
+	subprocess.call(["scripts/test1.sh"])
+	print "perl:"
+	subprocess.call(["scripts/test1.pl"])
+	print "python:"
+	subprocess.call(["scripts/test1.py"])
 
 #
 #  Oppgave 2
@@ -150,4 +151,4 @@ print infix_to_prefix("2/3")
 # Kalle opp din lab3_scripts() funksjon her
 print 5*"-" + " lab3_scripts() " + 5*"-"
 
-
+lab3_scripts()

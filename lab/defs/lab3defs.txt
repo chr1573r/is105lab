@@ -1,0 +1,26 @@
+# Definisjoner for lab3
+
+## Et regulært uttrykk 
+regular expression
+
+Brukes innen programmering og er en streng som beskriver et sett av strenger – et mønster – som følger gitte syntaksregler. Regulære uttrykk brukes i mange tekstbehandlere og verktøy for å søke etter og manipulere tekst basert på gitte mønstre. I tillegg er det en rekke programmeringsspråk som støtter regulære uttrykk. Språkene C, Java, JavaScript, Perl, PHP, Python og Ruby understøtter alle regulære uttrykk.
+
+
+## Import - Hva betyr dette i et Python program?
+Laste inn standar bibloteker til programmet du kjører, i dette tilfelle Python. slik at man får utnyttet innebygde funkjsoner. 
+
+
+## “Skript”språk
+Et skript språk, feks en tekstfil hvor man skriver komandoer, blir disse utført i sekvens, linje 2 blir ikke lest før linje 1 er ferdig med dette kan man autmoatisere mange oppgaver på maskinen. ish 
+
+
+## Perl
+Practical Extraction and Report Language
+Startet som et skript språk for og kunne prosessere rapporter/logger, og har utviklet seg til og bli et mye mer kraftigere tolket programmeringsspråk. det minner/låner litt egenskaper fra C programmering og Unix baserte tekst verktøy.
+
+
+## Bash
+Bourne Again shell.
+Et kommando linje skall og et skript språk, basert på opprinnelige "sh"-skallet skrevet av Stephen Bourne. 
+Brukes til og utføre forskjellige oppgaver på systemet og kan også skriptes for å automatisere oppgaver.
+Bash skallet er svært utbredt og følger med de fleste Linux distribusjoner.
