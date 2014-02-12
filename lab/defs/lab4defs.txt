@@ -1,0 +1,37 @@
+# Definisjoner for lab4
+
+## API
+Applikasjonsprogrammeringsgrensesnitt
+Et programmeringsgrensesnitt i en programvare som en kan utnytte fra tredjepartsprogrammer.
+En har gjerne også et API mot driveren til maskinvare, slik at du kan f.eks. lese/skrive til enheter enkelt.
+
+## IDE
+Integrert utviklingsmiljø
+En samlet programvare pakke der en typisk får integrert teksteditor, kompilator, debugger
+og øvrige verktøy i et og samme miljø.
+Eksempler på dette er f.eks. Eclipse eller Xcode.
+
+## ps
+Process status
+Printer ut en liste over prosesser som kjører på systemet og info om hver enkelt (pid osv.)
+
+## top
+Verktøy som sorterer kjørende prosesser og viser de mest ressurskrevende øverst.
+Viser også en del annen statistikk og informasjon om systemet.
+
+## df
+Brukes for å se hvor mye ledig plass en har igjen på monterte partisjoner.
+
+## kill
+Brukes for å "drepe"/terminere en prosess, basert på f.eks prosess IDen
+
+## netstat
+Printer ut en liste over aktive nettverksforbindelser, ruting-informasjon
+og annen nettverksstatistikk
+
+## ifconfig
+Verktøy for å konfigure nettverksgrensesnitt (interfaces).
+
+## who
+Viser hvem som er innlogget på systemet og hvilken "terminal"
+de er innlogget på.
