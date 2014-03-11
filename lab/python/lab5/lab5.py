@@ -10,9 +10,9 @@
 
 
 # Skriv inn fullt navn på gruppemedlemene (erstatte '-' med navn slikt 'Kari Trå')
-gruppe = {  'student1': '-', \
-			'student2': '-', \
-            'student3': '-', \
+gruppe = {  'student1': 'Christer Jonassen', \
+			'student2': 'Christoffer Lien', \
+            'student3': 'Pål Sandnes', \
 }
 
 # Oppgave 
@@ -43,7 +43,7 @@ gruppe = {  'student1': '-', \
 #		 4 - Straight (st) 
 #		 3 - Three of a kind (tk) 
 #	     2 - Two Pair (tp) 
-#        1 - One Pair (op) 
+#   7     1 - One Pair (op) 
 #        0 - High Card (hc)
 #   
 #
@@ -53,6 +53,7 @@ def poker(hands):
 		hand_rank er en funksjon som må skrives og brukes i sammenligningen av "hender"
 		Foreløpig fungerer den ikke
 	"""
+	#print hands
 	return max(hands, key=hand_rank)
 
 # Dette er et skall for en funksjon du kan skrive, men det er ikke en oppgave i denne laben.
@@ -68,11 +69,11 @@ def hand_rank(hand):
 		JC TC 9C 8C 7C => (8, 11) Straight Flush (8) Jack (11) High
 		AS AH AC AD QH => (7, 14, 12) Four Aces (7, 14)  and a Queen kicker (12)
 	"""
-	ranks = card_ranks(hand)
-	if straight(ranks) and flush(hand):
-		return (8, max(ranks)) # 2 3 4 5 6 => (8, 6)
-	elif kind(4, ranks): # kan returnere både boolean og tall, i Java 0 er False
-		return (7, kind(4, ranks), kind(1, ranks)) # 9 9 9 9 3 (7, 9, 3)
+	#ranks = card_ranks(hand)
+	#if straight(ranks) and flush(hand):
+	#	return (8, max(ranks)) # 2 3 4 5 6 => (8, 6)
+	#elif kind(4, ranks): # kan returnere både boolean og tall, i Java 0 er False
+	#	return (7, kind(4, ranks), kind(1, ranks)) # 9 9 9 9 3 (7, 9, 3)
 	#elif ...
 	
 # Funksjonene card_ranks(hand) returnerer en ORDNET tuple av verdier (ranks)
@@ -80,7 +81,28 @@ def hand_rank(hand):
 # En hånd TD TC TH 7C 7D skal returnere [10,10,10,7,7]
 def card_ranks(hand):
 	# Oppgave 4: implementer funksjonen her og legg til testtilfeller i funksjonen test()
-	return None
+
+	#Returner en hånd som bare inneholder tallverdier i tuple format
+	return (value_translate(hand[0][0]), value_translate(hand[1][0]), value_translate(hand[2][0]), value_translate(hand[3][0]), value_translate(hand[4][0]))
+
+# Hjelpefunksjon for card_ranks
+# Tolker om A, K, Q, J og T om til tallverdier.
+# Oversetter alltid value til int.
+
+def value_translate(value):
+
+	if value == "A":
+		value = 14
+	elif value == "K":
+		value = 13
+	elif value == "Q":
+		value = 12
+	elif value == "J":
+		value = 11
+	elif value == "T":
+		value = 10
+
+	return int(value)
 
 # Disse hjelpefunksjonene skal vi jobbe med videre i senere lab oppgaver.
 # Funksjonen straight(ranks) returner True hvis hånden er en Straight.
@@ -111,19 +133,27 @@ def test():
 	# Eksemplene er gitt, du må kommentere disse ut og sette på en verdi som ikke gir feil
 	lon1 = [6, 7, 8, 0]
 	lon2 = [6, 7, -9, 0]
-	#assert max(lov1) == 
-	#assert max(lov2, key=abs) == 
+	assert max(lon1) == 8		# sjekker at 8 er høyest
+	assert max(lon2, key=abs) == -9 # sjekker at -9 er maks (pga absoluttverdien til |-9|)
 
 	sf = "6C 7C 8C 9C TC".split() # Straight Flush => ['6C', '7C', '8C', '9C', 'TC']
 	fk = "9D 9H 9S 9C 7D".split() # Four of a Kind
 	fh = "TD TC TH 7C 7D".split() # Full House
 	assert poker([sf, fk, fh]) == sf
-	# Oppgave 2 
+	# Oppgave 2
 	# Skriv tre nye testtilfeller som sammenligner hender basert på eksemplet overfor
 	# 1) Four of Kind (fk) mot Full House (fh) skal returnere Four of Kind (fk)
 	# 2) Full House (fh) mot Full House (fh) skal returnere Full House (fh)
 	# 3) Straight (st) skal slå Two pair (tp) OBS! Du må selv lage eksempler på hender her
-	
+	st = "4D 1H 5H 2C 3D".split() # straight
+	hc = "1D QH 2H 3C JS".split() # high card
+	fl = "9D KD AD 7D 6D".split() # flush
+	tk = "9C 9S 9H 2D 5C".split() # three of a kind
+	tp = "TH TS QS QD 7C".split()
+	assert poker([fk, fh]) == fk
+	assert poker([fh, fh]) == fh
+	assert poker([st, tp]) == st
+	assert poker([fl, tp, tk, hc]) == fl
 
 	# Oppgave 3
 	# Skriv 2 nye testtilfeller:
@@ -132,19 +162,25 @@ def test():
 	# og det må da returnere Straight Flush (urealistisk med så mange spillere, men 
 	# vi tar høyde for det).
 	# Hva skjer hvis man har en tom liste som inn-data, dvs. ingen hender?
-	
+	assert poker([fk]) == fk
+	assert poker([sf, fh*100]) == sf
 
 	# Oppgave 4
 	# Implementer funksjonen card_rank(hand) og legg til tester for 
 	# sf, fk og fh variabler som er definert i denne testfunksjonen
 	# Du kan gjerne definere flere hender og legge til flere tester :)
+	#print"Her er sf:{}".format(sf)
+	assert card_ranks(sf) == (6, 7, 8, 9, 10)
 
+	#print"Her er fl:{}".format(fl)
+	assert card_ranks(fl) == (9, 13, 14, 7, 6)
+	
 
     # 
     # Funksjonen hard_rank er ennå ikke implementert
 	# Her er gitt noen eksempler på testing av denne funksjonen som man kan bruke på et senere tidspunkt
     #
-	#assert hand_rank(sf) == (8,10)
+	#assert hand_rank(sf) == (10, 11, 12, 13, 14)
 	#assert hand_rank(fk) == (7,9,7)
 	#assert hand_rank(fh) == (6,10,7)
 	return "Done testing"
