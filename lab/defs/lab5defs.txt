@@ -1,0 +1,50 @@
+Def 5
+Christer Jonassen, Christoffer Lien og Pål Sandnes.
+
+- Hva er de viktigste prosesstilstander i Linux OS
+
+
+		R:	"Running" - Prosessen eksekveres aktivt
+
+		T:	"Terminated" - Prosessen har mottatt stopp signal, kjører derfor ikke.
+
+		D:	"Disk" sleep - Prosessen er tvunget til å "sove", typisk fordi den venter på IO
+
+		S:	"Sleep" - Prosessen "sover", kan fritt motta signal for å starte igjen
+
+		Z:	"Zombie" - Prosessen sine foreldre er "drept", men den kjører fortsatt.
+
+
+- Forklar hva følgende kommandoer gjør:
+
+
+
+	- python <filnavn>.py
+
+		Starter python fortolkeren og eksekverer <filnavn>.py
+		Eks. Hvis vi åpner Lab4.py i terminalen kjører vi kildekoden og ser resultat et i Terminalen.
+
+	- javac <filnavn>.java
+		Kompilerer java bytekode fra vår .java kildekode fil.
+		Etterpå kan programmet vårt bli kjørt i Java Virtual Machine
+
+	- java <filnavn>.class
+		Vil forsøke å eksekvere en java klassedefinisjon i JVM.
+		Dette vil ikke fungere da en ikke skal angi filtype (.class).
+
+	- gcc -o <filnavn> <filnavn>.
+		Kjører GNU Compiler Collection og kompilerer kildekoden vi har angitt.
+		-o angir filnavnet på den kompilerte filen som gcc lager (output).
+
+	- sleep 100 & (utført fra kommandolinje)
+		Kjører sleep kommandoen i 100 sekunder i bakgrunnen (i tilstand sleeping)
+
+	- cat /proc/cpuinf
+		Returnerer informasjon om prosessoren i datamaskinen (modell, klokke)
+
+
+- Multiprogrammering (Søk selv på WWW (eller let i andre kilder, hvis aktuelt) og skriv ned korte definisjoner)
+	Måter en CPU kan kjøre flere programmer "samtidig"
+	Siden CPU er sekvensiell, kjører strengt tatt ikke flere programmer samtidig,
+	men siden eksekveringen er så rask, føles det ut som det er det den gjør.
+
